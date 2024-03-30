@@ -9,7 +9,7 @@ def DSBsc_demod(S_mod, f_car, f_s):
 
     S_demod = S_mod * car
 
-    f_cut = 2 * np.pi * 500  # Adjust cutoff frequency as needed
+    f_cut = 2 * np.pi * 500
     S_demod = np.convolve(S_demod, sinc_filter(f_cut, t), mode='same')
 
     return S_demod
@@ -40,7 +40,6 @@ def plot_signals(t, S_x, S_mod, S_demod, f_s):
     plt.xlabel('Time (seconds)')
     plt.ylabel('Amplitude')
 
-    # Plot the spectrum of the modulated and demodulated signals
     spec_mod = fftshift(fft(S_mod))
     spec_demod = fftshift(fft(S_demod))
     f_mod = np.fft.fftshift(np.fft.fftfreq(len(S_mod), 1 / f_s))
